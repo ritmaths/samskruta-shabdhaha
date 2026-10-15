@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ಸಂಸ್ಕೃತ ಶಬ್ದರೂಪಗಳು | Samskrita Shabda Forms</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Kannada -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Kannada:ital@0;1&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        saffron: {
+                            50: '#fffbf0',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                        },
+                        maroon: {
+                            500: '#991b1b',
+                            700: '#7f1d1d',
+                            800: '#6b1313',
+                            900: '#450a0a',
+                        },
+                        sanskritGold: '#eab308'
+                    },
+                    fontFamily: {
+                        kannada: ['Noto Sans Kannada', 'Tiro Kannada', 'sans-serif'],
+                        serifKannada: ['Tiro Kannada', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans Kannada', sans-serif;
+            background-color: #fdfbf7;
+        }
+        .bg-pattern {
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#d97706 0.5px, transparent 0.5px), radial-gradient(#d97706 0.5px, #fdfbf7 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.05;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fef3c7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b45309;
+        }
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-pattern text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-maroon-900 via-maroon-800 to-maroon-900 text-amber-100 shadow-xl border-b-4 border-saffron-500 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-3 text-center md:text-left">
+                    <div class="bg-saffron-600 text-white p-3 rounded-full shadow-md text-2xl">
+                        🕉️
+                    </div>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold font-serifKannada tracking-wide text-amber-200">
+                            ಸಂಸ್ಕೃತ ಶಬ್ದರೂಪಗಳು
+                        </h1>
+                        <p class="text-xs md:text-sm text-saffron-100 opacity-90">
+                            ಕನ್ನಡ ಅರ್ಥ ಮತ್ತು ಕಾರಕಗಳ ವಿವರಣೆಯೊಂದಿಗೆ
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Global Controls -->
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <button id="viewTableBtn" onclick="setViewMode('table')" class="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-saffron-600 text-white shadow">
+                        <i class="fa-solid fa-table-cells mr-1"></i> ಕೋಷ್ಟಕ (Table)
+                    </button>
+                    <button id="viewFlashcardBtn" onclick="setViewMode('flashcard')" class="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-maroon-700 hover:bg-maroon-600 text-amber-100 border border-saffron-500/30">
+                        <i class="fa-solid fa-clone mr-1"></i> ಫ್ಲ್ಯಾಶ್‌ಕಾರ್ಡ್ (Cards)
+                    </button>
+                    <button id="toggleMeaningBtn" onclick="toggleMeanings()" class="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-amber-800 hover:bg-amber-700 text-amber-100 border border-saffron-500/30">
+                        <i class="fa-solid fa-eye-slash mr-1"></i> <span id="toggleText">ಅರ್ಥ ಮುಚ್ಚು</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- Search and Shabda Selector Navigation -->
+        <div class="bg-white rounded-2xl shadow-lg border border-amber-200 p-4 mb-6">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                
+                <!-- Word Tabs -->
+                <div class="flex flex-wrap gap-2" id="shabdaTabs">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative min-w-[240px]">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="ಶಬ್ದ/ಅರ್ಥ ಹುಡುಕಿ (Search...)" 
+                           class="w-full pl-9 pr-4 py-2 border border-amber-300 rounded-xl focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 outline-none text-sm bg-amber-50/30">
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Word Banner / Header Information -->
+        <div id="wordHeader" class="bg-gradient-to-r from-saffron-100 via-amber-50 to-saffron-100 border-l-8 border-saffron-600 rounded-xl p-5 mb-6 shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                <div>
+                    <h2 id="wordTitle" class="text-2xl md:text-3xl font-bold font-serifKannada text-maroon-900">
+                        <!-- Word Title -->
+                    </h2>
+                    <p id="wordMeta" class="text-sm font-medium text-saffron-800 mt-1">
+                        <!-- Grammar metadata -->
+                    </p>
+                </div>
+                <div class="text-xs md:text-sm bg-white/80 backdrop-blur px-3 py-2 rounded-lg border border-amber-200 text-slate-700">
+                    💡 <strong>ಖೇಚರ ಗಮನ:</strong> ಪದಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ ಉಚ್ಚಾರಣೆ ಆಲಿಸಬಹುದು.
+                </div>
+            </div>
+        </div>
+
+        <!-- Table View Section -->
+        <div id="tableViewSection" class="bg-white rounded-2xl shadow-xl border border-amber-200 overflow-hidden transition-all duration-300">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse min-w-[650px]">
+                    <thead>
+                        <tr class="bg-gradient-to-r from-maroon-800 to-maroon-900 text-amber-100 text-sm md:text-base border-b border-saffron-600">
+                            <th class="p-4 w-1/4 font-semibold border-r border-maroon-700/50">ವಿಭಕ್ತಿಃ (Vibhakti) & ಕಾರಕ</th>
+                            <th class="p-4 w-1/4 font-semibold border-r border-maroon-700/50">ಏಕವಚನಮ್ (Singular)</th>
+                            <th class="p-4 w-1/4 font-semibold border-r border-maroon-700/50">ದ್ವಿವಚನಮ್ (Dual)</th>
+                            <th class="p-4 w-1/4 font-semibold">ಬಹುವಚನಮ್ (Plural)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shabdaTableBody" class="divide-y divide-amber-100 text-slate-800 text-base">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Flashcard View Section (Hidden by Default) -->
+        <div id="flashcardViewSection" class="hidden">
+            <div class="flex justify-between items-center mb-4 px-2">
+                <p class="text-sm text-slate-600">ಕಾರ್ಡ್ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ ಉತ್ತರ/ಅರ್ಥ ನೋಡಿ. (Click card to flip)</p>
+                <div class="flex gap-2">
+                    <button onclick="prevFlashcard()" class="p-2 rounded-lg bg-amber-100 hover:bg-amber-200 text-maroon-900">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <span id="flashcardCounter" class="self-center font-bold text-sm text-maroon-900">1 / 8</span>
+                    <button onclick="nextFlashcard()" class="p-2 rounded-lg bg-amber-100 hover:bg-amber-200 text-maroon-900">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="max-w-xl mx-auto">
+                <div id="flashcardElement" onclick="this.classList.toggle('flipped')" class="flip-card w-full h-80 cursor-pointer">
+                    <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-2xl border-2 border-saffron-500 bg-gradient-to-b from-amber-50 to-white p-6 flex flex-col justify-between text-center">
+                        <!-- Front -->
+                        <div class="flip-card-front absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-b from-saffron-50 to-amber-100/50 rounded-2xl">
+                            <span id="fcVibhakti" class="text-sm font-bold uppercase tracking-wider text-saffron-700 bg-saffron-100 px-3 py-1 rounded-full mb-3 border border-saffron-300">
+                                ವಿಭಕ್ತಿ
+                            </span>
+                            <h3 id="fcTitle" class="text-3xl font-bold font-serifKannada text-maroon-900 mb-2">
+                                -
+                            </h3>
+                            <p id="fcMeaningHint" class="text-xs text-slate-500 italic mt-4">
+                                [ಕಾರ್ಡ್ ಮೇಲ್ಬಾಗ ಸ್ಪರ್ಶಿಸಿ ರೂಪಗಳನ್ನು ನೋಡಿ]
+                            </p>
+                        </div>
+                        <!-- Back -->
+                        <div class="flip-card-back absolute inset-0 flex flex-col justify-center p-6 bg-maroon-900 text-amber-50 rounded-2xl border-2 border-saffron-400">
+                            <div class="text-xs font-semibold text-saffron-300 mb-2 border-b border-maroon-700 pb-1">
+                                ರೂಪಗಳು ಮತ್ತು ಕನ್ನಡ ಅರ್ಥ (Declensions & Meanings)
+                            </div>
+                            <div class="space-y-3 text-left my-auto">
+                                <div>
+                                    <span class="text-xs text-saffron-200 font-bold block">ಏಕವಚನಮ್:</span>
+                                    <span id="fcSingular" class="text-lg font-bold text-white"></span>
+                                    <span id="fcSingularM" class="text-xs text-amber-200 block italic"></span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-saffron-200 font-bold block">ದ್ವಿವಚನಮ್:</span>
+                                    <span id="fcDual" class="text-lg font-bold text-white"></span>
+                                    <span id="fcDualM" class="text-xs text-amber-200 block italic"></span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-saffron-200 font-bold block">ಬಹುವಚನಮ್:</span>
+                                    <span id="fcPlural" class="text-lg font-bold text-white"></span>
+                                    <span id="fcPluralM" class="text-xs text-amber-200 block italic"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Grammar Reference Card -->
+        <div class="mt-8 bg-amber-50 rounded-2xl p-6 border border-amber-200">
+            <h3 class="text-lg font-bold text-maroon-900 mb-3 font-serifKannada flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark text-saffron-600"></i> ವಿಭಕ್ತಿ ಮತ್ತು ಕಾರಕ ಪರಿಚಯ (Grammar Guide)
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs md:text-sm">
+                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
+                    <span class="font-bold text-maroon-800">ಪ್ರಥಮಾ:</span> ಕರ್ತೃ (Subject)
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
+                    <span class="font-bold text-maroon-800">ದ್ವಿತೀಯಾ:</span> ಕರ್ಮ (Object - 'ಅನ್ನು')
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
+                    <span class="font-bold text-maroon-800">ತೃತೀಯಾ:</span> ಕರಣ (By/With - 'ಇಂದ/ಒಡನೆ')
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
+                    <span class="font-bold text-maroon-800">ಚತುರ್ಥೀ:</span> ಸಂಪ್ರದಾನ (For/To - 'ಗಾಗಿ/ಗೆ')
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
+                    <span class="font-bold text-maroon-800">ಪಂಚಮೀ:</span> ಅಪಾದಾನ (From - 'ದಿಸೆಯಿಂದ/ಇಂದ')
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
+                    <span class="font-bold text-maroon-800">ಷಷ್ಠೀ:</span> ಸಂಬಂಧ (Of/'s - 'ಅ/ಅದ್ದು')
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
+                    <span class="font-bold text-maroon-800">ಸಪ್ತಮೀ:</span> ಅಧಿಕರಣ (In/On/At - 'ನಲ್ಲಿ')
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
+                    <span class="font-bold text-maroon-800">ಸಂಬೋಧನಾ:</span> ಸಂಬೋಧನೆ (Addressing - 'ಓ!')
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-maroon-900 text-amber-200 border-t-2 border-saffron-500 py-6 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs md:text-sm space-y-2">
+            <p class="font-serifKannada text-amber-100">ಸಂಸ್ಕೃತ ಸುಭಾಷಿತಃ | ಸಂಸ್ಕೃತ ಭಾಷಾ ಕಲಿಕಾ ಸಾಹಿತ್ಯ</p>
+            <p class="text-amber-300/70">Samskrita Shabda Declensions in Kannada Script with Exact Meanings</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // Database of Sanskrit Shabdas with Kannada Meanings
+        const shabdaData = [
+            {
+                id: 'rama',
+                name: 'ರಾಮಶಬ್ದಃ',
+                subTitle: 'ಅಕಾರಾಂತಃ ಪುಂಲಿಂಗಃ ರಾಮಶಬ್ದಃ',
+                meta: 'Akārāntaḥ Puṁliṅgaḥ Rāma-śabdaḥ (Masculine ending in "a")',
+                forms: [
+                    {
+                        vibhakti: 'ಪ್ರಥಮಾ',
+                        karaka: 'ಕರ್ತೃ - Subject',
+                        singular: 'ರಾಮಃ', singularM: 'ರಾಮನು',
+                        dual: 'ರಾಮೌ', dualM: 'ಇಬ್ಬರು ರಾಮರು',
+                        plural: 'ರಾಮಾಃ', pluralM: 'ಎಲ್ಲಾ ರಾಮರು/ರಾಮರುಗಳು'
+                    },
+                    {
+                        vibhakti: 'ದ್ವಿತೀಯಾ',
+                        karaka: 'ಕರ್ಮ - Object',
+                        singular: 'ರಾಮಮ್', singularM: 'ರಾಮನನ್ನು',
+                        dual: 'ರಾಮೌ', dualM: 'ಇಬ್ಬರು ರಾಮರನ್ನು',
+                        plural: 'ರಾಮಾನ್', pluralM: 'ಎಲ್ಲಾ ರಾಮರನ್ನು'
+                    },
+                    {
+                        vibhakti: 'ತೃತೀಯಾ',
+                        karaka: 'ಕರಣ - By / With',
+                        singular: 'ರಾಮೇಣ', singularM: 'ರಾಮನಿಂದ / ರಾಮನೊಡನೆ',
+                        dual: 'ರಾಮಾಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ರಾಮರಿಂದ',
+                        plural: 'ರಾಮೈಃ', pluralM: 'ಎಲ್ಲಾ ರಾಮರಿಂದ'
+                    },
+                    {
+                        vibhakti: 'ಚತುರ್ಥೀ',
+                        karaka: 'ಸಂಪ್ರದಾನ - For / To',
+                        singular: 'ರಾಮಾಯ', singularM: 'ರಾಮನಿಗಾಗಿ / ರಾಮನಿಗೆ',
+                        dual: 'ರಾಮಾಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ರಾಮರಿಗಾಗಿ',
+                        plural: 'ರಾಮೇಭ್ಯಃ', pluralM: 'ಎಲ್ಲಾ ರಾಮರಿಗಾಗಿ'
+                    },
+                    {
+                        vibhakti: 'ಪಂಚಮೀ',
+                        karaka: 'ಅಪಾದಾನ - From',
+                        singular: 'ರಾಮಾತ್', singularM: 'ರಾಮನಿಂದ / ರಾಮನ ದೆಸೆಯಿಂದ',
+                        dual: 'ರಾಮಾಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ರಾಮರ ದೆಸೆಯಿಂದ',
+                        plural: 'ರಾಮೇಭ್ಯಃ', pluralM: 'ಎಲ್ಲಾ ರಾಮರ ದೆಸೆಯಿಂದ'
+                    },
+                    {
+                        vibhakti: 'ಷಷ್ಠೀ',
+                        karaka: 'ಸಂಬಂಧ - Of / \'s',
+                        singular: 'ರಾಮಸ್ಯ', singularM: 'ರಾಮನ / ರಾಮನದ್ದು',
+                        dual: 'ರಾಮಯೋಃ', dualM: 'ಇಬ್ಬರು ರಾಮರ',
+                        plural: 'ರಾಮಾಣಾಮ್', pluralM: 'ಎಲ್ಲಾ ರಾಮರ'
+                    },
+                    {
+                        vibhakti: 'ಸಪ್ತಮೀ',
+                        karaka: 'ಅಧಿಕರಣ - In / On / At',
+                        singular: 'ರಾಮೇ', singularM: 'ರಾಮನಲ್ಲಿ',
+                        dual: 'ರಾಮಯೋಃ', dualM: 'ಇಬ್ಬರು ರಾಮರಲ್ಲಿ',
+                        plural: 'ರಾಮೇಷು', pluralM: 'ಎಲ್ಲಾ ರಾಮರಲ್ಲಿ'
+                    },
+                    {
+                        vibhakti: 'ಸಂಬೋಧನಾ ಪ್ರಥಮಾ',
+                        karaka: 'ಸಂಬೋಧನೆ - Addressing',
+                        singular: 'ಹೇ ರಾಮ', singularM: 'ಓ ರಾಮನೇ!',
+                        dual: 'ಹೇ ರಾಮೌ', dualM: 'ಓ ಇಬ್ಬರು ರಾಮರೇ!',
+                        plural: 'ಹೇ ರಾಮಾಃ', pluralM: 'ಓ ಎಲ್ಲಾ ರಾಮರೇ!'
+                    }
+                ]
+            },
+            {
+                id: 'hari',
+                name: 'ಹರಿಶಬ್ದಃ',
+                subTitle: 'ಇಕಾರಾಂತಃ ಪುಂಲಿಂಗಃ ಹರಿಶಬ್ದಃ',
+                meta: 'Ikārāntaḥ Puṁliṅgaḥ Hari-śabdaḥ (Masculine ending in "i")',
+                forms: [
+                    {
+                        vibhakti: 'ಪ್ರಥಮಾ',
+                        karaka: 'ಕರ್ತೃ - Subject',
+                        singular: 'ಹರಿಃ', singularM: 'ಹರಿಯು (ವಿಷ್ಣು)',
+                        dual: 'ಹರೀ', dualM: 'ಇಬ್ಬರು ಹರಿಗಳು',
+                        plural: 'ಹರಯಃ', pluralM: 'ಎಲ್ಲಾ ಹರಿಗಳು'
+                    },
+                    {
+                        vibhakti: 'ದ್ವಿತೀಯಾ',
+                        karaka: 'ಕರ್ಮ - Object',
+                        singular: 'ಹರಿಮ್', singularM: 'ಹರಿಯನ್ನು',
+                        dual: 'ಹರೀ', dualM: 'ಇಬ್ಬರು ಹರಿಗಳನ್ನು',
+                        plural: 'ಹರೀನ್', pluralM: 'ಎಲ್ಲಾ ಹರಿಗಳನ್ನು'
+                    },
+                    {
+                        vibhakti: 'ತೃತೀಯಾ',
+                        karaka: 'ಕರಣ - By / With',
+                        singular: 'ಹರಿಣಾ', singularM: 'ಹರಿಯಿಂದ / ಹರಿಯೊಡನೆ',
+                        dual: 'ಹರಿಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ಹರಿಗಳಿಂದ',
+                        plural: 'ಹರಿಭಿಃ', pluralM: 'ಎಲ್ಲಾ ಹರಿಗಳಿಂದ'
+                    },
+                    {
+                        vibhakti: 'ಚತುರ್ಥೀ',
+                        karaka: 'ಸಂಪ್ರದಾನ - For / To',
+                        singular: 'ಹರಯೇ', singularM: 'ಹರಿಗಾಗಿ / ಹರಿಗೆ',
+                        dual: 'ಹರಿಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ಹರಿಗಾಗಿ',
+                        plural: 'ಹರಿಭ್ಯಃ', pluralM: 'ಎಲ್ಲಾ ಹರಿಗಳಿಗಾಗಿ'
+                    },
+                    {
+                        vibhakti: 'ಪಂಚಮೀ',
+                        karaka: 'ಅಪಾದಾನ - From',
+                        singular: 'ಹರೇಃ', singularM: 'ಹರಿಯಿಂದ / ಹರಿಯ ದೆಸೆಯಿಂದ',
+                        dual: 'ಹರಿಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ಹರಿಗಳ ದೆಸೆಯಿಂದ',
+                        plural: 'ಹರಿಭ್ಯಃ', pluralM: 'ಎಲ್ಲಾ ಹರಿಗಳ ದೆಸೆಯಿಂದ'
+                    },
+                    {
+                        vibhakti: 'ಷಷ್ಠೀ',
+                        karaka: 'ಸಂಬಂಧ - Of / \'s',
+                        singular: 'ಹರೇಃ', singularM: 'ಹರಿಯ / ಹರಿಯದ್ದು',
+                        dual: 'ಹರ್ಯೋಃ', dualM: 'ಇಬ್ಬರು ಹರಿಗಳ',
+                        plural: 'ಹರೀಣಾಮ್', pluralM: 'ಎಲ್ಲಾ ಹರಿಗಳ'
+                    },
+                    {
+                        vibhakti: 'ಸಪ್ತಮೀ',
+                        karaka: 'ಅಧಿಕರಣ - In / On / At',
+                        singular: 'ಹರೌ', singularM: 'ಹರಿಯಲ್ಲಿ',
+                        dual: 'ಹರ್ಯೋಃ', dualM: 'ಇಬ್ಬರು ಹರಿಗಳಲ್ಲಿ',
+                        plural: 'ಹರಿಷು', pluralM: 'ಎಲ್ಲಾ ಹರಿಗಳಲ್ಲಿ'
+                    },
+                    {
+                        vibhakti: 'ಸಂಬೋಧನಾ ಪ್ರಥಮಾ',
+                        karaka: 'ಸಂಬೋಧನೆ - Addressing',
+                        singular: 'ಹೇ ಹರೇ', singularM: 'ಓ ಹರಿಯೇ!',
+                        dual: 'ಹೇ ಹರೀ', dualM: 'ಓ ಇಬ್ಬರು ಹರಿಗಳೇ!',
+                        plural: 'ಹೇ ಹರಯಃ', pluralM: 'ಓ ಎಲ್ಲಾ ಹರಿಗಳೇ!'
+                    }
+                ]
+            },
+            {
+                id: 'shambhu',
+                name: 'ಶಂಭುಶಬ್ದಃ',
+                subTitle: 'ಉಕಾರಾಂತಃ ಪುಂಲಿಂಗಃ ಶಂಭುಶಬ್ದಃ',
+                meta: 'Ukārāntaḥ Puṁliṅgaḥ Śambhu-śabdaḥ (Masculine ending in "u")',
+                forms: [
+                    {
+                        vibhakti: 'ಪ್ರಥಮಾ',
+                        karaka: 'ಕರ್ತೃ - Subject',
+                        singular: 'ಶಂಭುಃ', singularM: 'ಶಂಭುವು (ಶಿವನು)',
+                        dual: 'ಶಂಭೂ', dualM: 'ಇಬ್ಬರು ಶಂಭುಗಳು',
+                        plural: 'ಶಂಭವಃ', pluralM: 'ಎಲ್ಲಾ ಶಂಭುಗಳು'
+                    },
+                    {
+                        vibhakti: 'ದ್ವಿತೀಯಾ',
+                        karaka: 'ಕರ್ಮ - Object',
+                        singular: 'ಶಂಭುಮ್', singularM: 'ಶಂಭುವನ್ನು',
+                        dual: 'ಶಂಭೂ', dualM: 'ಇಬ್ಬರು ಶಂಭುಗಳನ್ನು',
+                        plural: 'ಶಂಭೂನ್', pluralM: 'ಎಲ್ಲಾ ಶಂಭುಗಳನ್ನು'
+                    },
+                    {
+                        vibhakti: 'ತೃತೀಯಾ',
+                        karaka: 'ಕರಣ - By / With',
+                        singular: 'ಶಂಭುನಾ', singularM: 'ಶಂಭುವಿನಿಂದ / ಶಂಭುವಿನೊಡನೆ',
+                        dual: 'ಶಂಭುಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ಶಂಭುಗಳಿಂದ',
+                        plural: 'ಶಂಭುಭಿಃ', pluralM: 'ಎಲ್ಲಾ ಶಂಭುಗಳಿಂದ'
+                    },
+                    {
+                        vibhakti: 'ಚತುರ್ಥೀ',
+                        karaka: 'ಸಂಪ್ರದಾನ - For / To',
+                        singular: 'ಶಂಭವೇ', singularM: 'ಶಂಭುವಿಗಾಗಿ / ಶಂಭುವಿಗೆ',
+                        dual: 'ಶಂಭುಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ಶಂಭುಗಳಿಗಾಗಿ',
+                        plural: 'ಶಂಭುಭ್ಯಃ', pluralM: 'ಎಲ್ಲಾ ಶಂಭುಗಳಿಗಾಗಿ'
+                    },
+                    {
+                        vibhakti: 'ಪಂಚಮೀ',
+                        karaka: 'ಅಪಾದಾನ - From',
+                        singular: 'ಶಂಭೋಃ', singularM: 'ಶಂಭುವಿನಿಂದ / ಶಂಭುವಿನ ದೆಸೆಯಿಂದ',
+                        dual: 'ಶಂಭುಭ್ಯಾಮ್', dualM: 'ಇಬ್ಬರು ಶಂಭುಗಳ ದೆಸೆಯಿಂದ',
+                        plural: 'ಶಂಭುಭ್ಯಃ', pluralM: 'ಎಲ್ಲಾ ಶಂಭುಗಳ ದೆಸೆಯಿಂದ'
+                    },
+                    {
+                        vibhakti: 'ಷಷ್ಠೀ',
+                        karaka: 'ಸಂಬಂಧ - Of / \'s',
+                        singular: 'ಶಂಭೋಃ', singularM: 'ಶಂಭುವಿನ / ಶಂಭುವಿನದ್ದು',
+                        dual: 'ಶಂಭ್ವೋಃ', dualM: 'ಇಬ್ಬರು ಶಂಭುಗಳ',
+                        plural: 'ಶಂಭೂನಾಮ್', pluralM: 'ಎಲ್ಲಾ ಶಂಭುಗಳ'
+                    },
+                    {
+                        vibhakti: 'ಸಪ್ತಮೀ',
+                        karaka: 'ಅಧಿಕರಣ - In / On / At',
+                        singular: 'ಶಂಭೌ', singularM: 'ಶಂಭುವಿನಲ್ಲಿ',
+                        dual: 'ಶಂಭ್ವೋಃ', dualM: 'ಇಬ್ಬರು ಶಂಭುಗಳಲ್ಲಿ',
+                        plural: 'ಶಂಭುಷು', pluralM: 'ಎಲ್ಲಾ ಶಂಭುಗಳಲ್ಲಿ'
+                    },
+                    {
+                        vibhakti: 'ಸಂಬೋಧನಾ ಪ್ರಥಮಾ',
+                        karaka: 'ಸಂಬೋಧನೆ - Addressing',
+                        singular: 'ಹೇ ಶಂಭೋ', singularM: 'ಓ ಶಂಭುವೇ!',
+                        dual: 'ಹೇ ಶಂಭೂ', dualM: 'ಓ ಇಬ್ಬರು ಶಂಭುಗಳೇ!',
+                        plural: 'ಹೇ ಶಂಭವಃ', pluralM: 'ಓ ಎಲ್ಲಾ ಶಂಭುಗಳೇ!'
+                    }
+                ]
+            }
+        ];
+
+        // Application State
+        let activeShabdaIndex = 0;
+        let showMeanings = true;
+        let viewMode = 'table'; // 'table' or 'flashcard'
+        let currentFlashcardIdx = 0;
+        let searchQuery = '';
+
+        // DOM Loaded Init
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTabs();
+            renderActiveWord();
+        });
+
+        // Render Tabs
+        function renderTabs() {
+            const tabsContainer = document.getElementById('shabdaTabs');
+            tabsContainer.innerHTML = shabdaData.map((data, index) => {
+                const isActive = index === activeShabdaIndex;
+                return `
+                    <button onclick="selectShabda(${index})" 
+                            class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                                isActive 
+                                ? 'bg-gradient-to-r from-saffron-600 to-saffron-700 text-white shadow-md shadow-saffron-500/20' 
+                                : 'bg-amber-100/60 hover:bg-amber-200/80 text-maroon-900 border border-amber-200'
+                            }">
+                        <i class="fa-solid fa-scroll mr-1.5 ${isActive ? 'text-amber-200' : 'text-saffron-600'}"></i>
+                        ${data.name}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        // Switch Active Shabda
+        function selectShabda(index) {
+            activeShabdaIndex = index;
+            currentFlashcardIdx = 0;
+            renderTabs();
+            renderActiveWord();
+        }
+
+        // Render Active Word Details
+        function renderActiveWord() {
+            const shabda = shabdaData[activeShabdaIndex];
+
+            // Update Header Information
+            document.getElementById('wordTitle').innerText = shabda.subTitle;
+            document.getElementById('wordMeta').innerText = shabda.meta;
+
+            // Render View depending on mode
+            if (viewMode === 'table') {
+                renderTable(shabda);
+            } else {
+                renderFlashcard();
+            }
+        }
+
+        // Render Table View
+        function renderTable(shabda) {
+            const tbody = document.getElementById('shabdaTableBody');
+            
+            // Filter forms if search query is present
+            const filteredForms = shabda.forms.filter(f => {
+                if (!searchQuery) return true;
+                const q = searchQuery.toLowerCase();
+                return f.vibhakti.toLowerCase().includes(q) ||
+                       f.karaka.toLowerCase().includes(q) ||
+                       f.singular.toLowerCase().includes(q) ||
+                       f.singularM.toLowerCase().includes(q) ||
+                       f.dual.toLowerCase().includes(q) ||
+                       f.dualM.toLowerCase().includes(q) ||
+                       f.plural.toLowerCase().includes(q) ||
+                       f.pluralM.toLowerCase().includes(q);
+            });
+
+            if (filteredForms.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="text-center py-8 text-slate-500 font-medium">
+                            ಯಾವ ಫಲಿತಾಂಶವೂ ಕಂಡುಬಂದಿಲ್ಲ (No matching forms found)
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filteredForms.map((row, idx) => {
+                const bgClass = idx % 2 === 0 ? 'bg-amber-50/30' : 'bg-white';
+                return `
+                    <tr class="${bgClass} hover:bg-saffron-50/50 transition-colors">
+                        <td class="p-3.5 border-r border-amber-200/60 font-semibold text-maroon-900">
+                            <div>${row.vibhakti}</div>
+                            <div class="text-xs text-saffron-700 font-normal mt-0.5">${row.karaka}</div>
+                        </td>
+                        <td class="p-3.5 border-r border-amber-200/60 cursor-pointer hover:text-saffron-700" onclick="speakText('${row.singular}')">
+                            <div class="font-bold text-slate-900">${row.singular}</div>
+                            ${showMeanings ? `<div class="text-xs text-slate-600 mt-1 italic">(${row.singularM})</div>` : ''}
+                        </td>
+                        <td class="p-3.5 border-r border-amber-200/60 cursor-pointer hover:text-saffron-700" onclick="speakText('${row.dual}')">
+                            <div class="font-bold text-slate-900">${row.dual}</div>
+                            ${showMeanings ? `<div class="text-xs text-slate-600 mt-1 italic">(${row.dualM})</div>` : ''}
+                        </td>
+                        <td class="p-3.5 cursor-pointer hover:text-saffron-700" onclick="speakText('${row.plural}')">
+                            <div class="font-bold text-slate-900">${row.plural}</div>
+                            ${showMeanings ? `<div class="text-xs text-slate-600 mt-1 italic">(${row.pluralM})</div>` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Render Flashcard View
+        function renderFlashcard() {
+            const shabda = shabdaData[activeShabdaIndex];
+            const form = shabda.forms[currentFlashcardIdx];
+
+            // Reset Flip State
+            const cardElem = document.getElementById('flashcardElement');
+            cardElem.classList.remove('flipped');
+
+            // Set Card Data
+            document.getElementById('fcVibhakti').innerText = form.vibhakti + ' - (' + form.karaka + ')';
+            document.getElementById('fcTitle').innerText = shabda.name + ' - ' + form.vibhakti;
+            
+            document.getElementById('fcSingular').innerText = form.singular;
+            document.getElementById('fcSingularM').innerText = '(' + form.singularM + ')';
+
+            document.getElementById('fcDual').innerText = form.dual;
+            document.getElementById('fcDualM').innerText = '(' + form.dualM + ')';
+
+            document.getElementById('fcPlural').innerText = form.plural;
+            document.getElementById('fcPluralM').innerText = '(' + form.pluralM + ')';
+
+            document.getElementById('flashcardCounter').innerText = `${currentFlashcardIdx + 1} / ${shabda.forms.length}`;
+        }
+
+        function prevFlashcard() {
+            const shabda = shabdaData[activeShabdaIndex];
+            currentFlashcardIdx = (currentFlashcardIdx - 1 + shabda.forms.length) % shabda.forms.length;
+            renderFlashcard();
+        }
+
+        function nextFlashcard() {
+            const shabda = shabdaData[activeShabdaIndex];
+            currentFlashcardIdx = (currentFlashcardIdx + 1) % shabda.forms.length;
+            renderFlashcard();
+        }
+
+        // Toggle Meaning Visibility
+        function toggleMeanings() {
+            showMeanings = !showMeanings;
+            const toggleText = document.getElementById('toggleText');
+            const toggleBtn = document.getElementById('toggleMeaningBtn');
+            
+            if (showMeanings) {
+                toggleText.innerText = 'ಅರ್ಥ ಮುಚ್ಚು';
+                toggleBtn.classList.replace('bg-amber-600', 'bg-amber-800');
+            } else {
+                toggleText.innerText = 'ಅರ್ಥ ತೋರಿಸು';
+                toggleBtn.classList.replace('bg-amber-800', 'bg-amber-600');
+            }
+            renderActiveWord();
+        }
+
+        // Switch View Modes
+        function setViewMode(mode) {
+            viewMode = mode;
+            const tableSec = document.getElementById('tableViewSection');
+            const flashcardSec = document.getElementById('flashcardViewSection');
+            const tableBtn = document.getElementById('viewTableBtn');
+            const cardBtn = document.getElementById('viewFlashcardBtn');
+
+            if (mode === 'table') {
+                tableSec.classList.remove('hidden');
+                flashcardSec.classList.add('hidden');
+                
+                tableBtn.className = 'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-saffron-600 text-white shadow';
+                cardBtn.className = 'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-maroon-700 hover:bg-maroon-600 text-amber-100 border border-saffron-500/30';
+            } else {
+                tableSec.classList.add('hidden');
+                flashcardSec.classList.remove('hidden');
+
+                cardBtn.className = 'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-saffron-600 text-white shadow';
+                tableBtn.className = 'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors bg-maroon-700 hover:bg-maroon-600 text-amber-100 border border-saffron-500/30';
+            }
+            renderActiveWord();
+        }
+
+        // Search Handling
+        function handleSearch() {
+            searchQuery = document.getElementById('searchInput').value.trim();
+            renderActiveWord();
+        }
+
+        // Text To Speech Synthesis
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel existing speaking
+                window.speechSynthesis.cancel();
+
+                // Clean text for speech
+                const cleanText = text.replace(/[-]/g, '');
+                const utterance = new SpeechSynthesisUtterance(cleanText);
+                
+                // Set language pitch & speed
+                utterance.lang = 'kn-IN'; // Kannada locale
+                utterance.rate = 0.85; // slightly slower for clear Sanskrit pronunciation
+                
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+    </script>
+</body>
+</html>
