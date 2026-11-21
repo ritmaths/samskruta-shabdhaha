@@ -1,296 +1,969 @@
-<!-- ... existing code ... -->
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ಸಂಸ್ಕೃತ ಶಬ್ದ ಮತ್ತು ಧಾತು ರೂಪಗಳು | Sanskrit Shabda & Dhatu Portal</title>
     <!-- Google Fonts for Kannada & Devanagari -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Tiro+Kannada:ital@0;1&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Serif:wght@600;700&family=Tiro+Devanagari+Sanskrit&family=Tiro+Kannada&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        saffron: {
-                            50: '#fffbf0',
-                            100: '#fef3c7',
-                            500: '#f59e0b',
-                            600: '#d97706',
-                            700: '#b45309',
-                            800: '#92400e',
-                        },
-                        maroon: {
-                            500: '#991b1b',
-                            700: '#7f1d1d',
-                            800: '#6b1313',
-                            900: '#450a0a',
-                        },
-                        sanskritGold: '#eab308'
-                    },
-                    fontFamily: {
-                        kannada: ['Noto Sans Kannada', 'Noto Sans Devanagari', 'sans-serif'],
-                        serifKannada: ['Tiro Kannada', 'Tiro Devanagari Sanskrit', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
     <style>
+        :root {
+            --bg-cream: #FDFBF7;
+            --card-white: #FFFFFF;
+            --maroon-dark: #4A0808;
+            --maroon-main: #800000;
+            --maroon-mid: #991B1B;
+            --saffron-main: #C2410C;
+            --saffron-bright: #EA580C;
+            --saffron-light: #FFF7ED;
+            --amber-tint: #FEF3C7;
+            --amber-border: #FDE68A;
+            --gold-accent: #F59E0B;
+            --text-dark: #1E293B;
+            --text-muted: #57534E;
+            --shadow-sm: 0 2px 6px rgba(128, 0, 0, 0.06);
+            --shadow-md: 0 6px 18px rgba(128, 0, 0, 0.10);
+            --shadow-lg: 0 12px 28px rgba(74, 8, 8, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Noto Sans Kannada', 'Noto Sans Devanagari', sans-serif;
-            background-color: #fdfbf7;
+            font-family: 'Noto Sans Kannada', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-cream);
+            background-image: radial-gradient(rgba(194, 65, 12, 0.08) 1px, transparent 1px);
+            background-size: 22px 22px;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+            -webkit-tap-highlight-color: transparent;
         }
-        .bg-pattern {
-            background-color: #fdfbf7;
-            background-image: radial-gradient(#d97706 0.5px, transparent 0.5px), radial-gradient(#d97706 0.5px, #fdfbf7 0.5px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+
+        .hidden {
+            display: none !important;
         }
-        /* Active audio highlight */
-        .speaking-highlight {
-            background-color: #fef08a !important;
-            box-shadow: inset 0 0 0 2px #d97706;
-            transform: scale(1.01);
+
+        /* Header Banner */
+        .app-header {
+            background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon-main) 50%, var(--saffron-main) 100%);
+            color: #FEF3C7;
+            border-bottom: 4px solid var(--gold-accent);
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 14px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-emblem {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #F59E0B, #C2410C);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+            flex-shrink: 0;
+        }
+
+        .brand-title {
+            font-family: 'Tiro Kannada', 'Tiro Devanagari Sanskrit', 'Noto Serif', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #FEF08A;
+            letter-spacing: 0.2px;
+            line-height: 1.25;
+        }
+
+        .brand-subtitle {
+            font-size: 0.78rem;
+            color: #FDE68A;
+            opacity: 0.92;
+        }
+
+        /* Header Action Controls */
+        .header-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .script-switch {
+            display: inline-flex;
+            background: rgba(35, 3, 3, 0.65);
+            padding: 3px;
+            border-radius: 999px;
+            border: 1px solid rgba(253, 224, 71, 0.4);
+        }
+
+        .script-btn {
+            border: none;
+            background: transparent;
+            color: #FDE68A;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
             transition: all 0.2s ease;
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+
+        .script-btn.active {
+            background: linear-gradient(135deg, #EA580C, #C2410C);
+            color: #FFFFFF;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
-        ::-webkit-scrollbar-track {
-            background: #fef3c7;
+
+        .nav-pill {
+            border: 1px solid rgba(253, 230, 138, 0.35);
+            background: rgba(255, 255, 255, 0.12);
+            color: #FEF3C7;
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #d97706;
-            border-radius: 4px;
+
+        .nav-pill:hover {
+            background: rgba(255, 255, 255, 0.22);
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #b45309;
+
+        .nav-pill.active {
+            background: #F59E0B;
+            color: #3B0707;
+            border-color: #FEF08A;
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         }
-        .flip-card {
-            perspective: 1000px;
+
+        .nav-pill.meaning-off {
+            background: #3B0707;
+            color: #FCD34D;
         }
-        .flip-card-inner {
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
+
+        /* Main Container */
+        .main-container {
+            max-width: 1180px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 18px 16px 36px;
+            flex-grow: 1;
         }
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
+
+        /* Selector & Search Card */
+        .control-card {
+            background: var(--card-white);
+            border: 1px solid var(--amber-border);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 18px;
         }
-        .flip-card-front, .flip-card-back {
-            backface-visibility: hidden;
+
+        .control-top-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
         }
-        .flip-card-back {
-            transform: rotateY(180deg);
+
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tab-btn {
+            border: 1px solid #FCD34D;
+            background: #FFFBEB;
+            color: var(--maroon-dark);
+            padding: 9px 15px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            background: #FEF3C7;
+            transform: translateY(-1px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--maroon-main), var(--saffron-main));
+            color: #FFFFFF;
+            border-color: var(--maroon-main);
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.24);
+        }
+
+        .tab-btn.dhatu-tab.active {
+            background: linear-gradient(135deg, #581C87, var(--maroon-main));
+            border-color: #F59E0B;
+        }
+
+        .search-wrapper {
+            position: relative;
+            flex: 1 1 240px;
+            max-width: 340px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9A3412;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 9px 14px 9px 36px;
+            border: 1.5px solid #FDBA74;
+            border-radius: 999px;
+            background: #FFFBF5;
+            font-family: inherit;
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--saffron-main);
+            box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.15);
+            background: #FFFFFF;
+        }
+
+        /* Dhatu Sub-Selector Bar */
+        .dhatu-sub-bar {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed #FCD34D;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dhatu-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--maroon-main);
+            margin-right: 4px;
+        }
+
+        .sub-tab-btn {
+            border: 1px solid #FDBA74;
+            background: #FFF7ED;
+            color: #7C2D12;
+            padding: 6px 13px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .sub-tab-btn.active {
+            background: var(--saffron-main);
+            color: #FFFFFF;
+            border-color: var(--saffron-main);
+            box-shadow: 0 2px 6px rgba(194, 65, 12, 0.25);
+        }
+
+        /* Active Word Banner */
+        .word-banner {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            border: 1px solid #FCD34D;
+            border-left: 6px solid var(--saffron-main);
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .word-banner-title {
+            font-family: 'Tiro Kannada', 'Tiro Devanagari Sanskrit', 'Noto Serif', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--maroon-dark);
+            line-height: 1.3;
+        }
+
+        .word-banner-meta {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: #9A3412;
+            margin-top: 3px;
+        }
+
+        .audio-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .play-all-btn {
+            background: linear-gradient(135deg, var(--maroon-main), var(--saffron-main));
+            color: #FFFFFF;
+            border: 1px solid #F59E0B;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(128, 0, 0, 0.22);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .play-all-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(128, 0, 0, 0.28);
+        }
+
+        .stop-all-btn {
+            background: #B91C1C;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 3px 8px rgba(185, 28, 28, 0.3);
+        }
+
+        /* Table Card Styling */
+        .table-card {
+            background: var(--card-white);
+            border: 1px solid #FCD34D;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .table-scroll {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .shabda-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+            text-align: left;
+        }
+
+        .shabda-table thead tr {
+            background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon-main) 100%);
+            color: #FEF3C7;
+        }
+
+        .shabda-table th {
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-right: 1px solid rgba(253, 230, 138, 0.2);
+            width: 25%;
+        }
+
+        .shabda-table th:last-child {
+            border-right: none;
+        }
+
+        .shabda-table tbody tr {
+            border-bottom: 1px solid #FDE68A;
+            transition: background-color 0.15s ease;
+        }
+
+        .shabda-table tbody tr:nth-child(odd) {
+            background-color: #FFFDF9;
+        }
+
+        .shabda-table tbody tr:nth-child(even) {
+            background-color: #FFF8EB;
+        }
+
+        .shabda-table tbody tr.sambodhana-row {
+            background-color: #FEF3C7;
+        }
+
+        .shabda-table tbody tr:hover {
+            background-color: #FFEDD5;
+        }
+
+        .shabda-table td {
+            padding: 13px 16px;
+            border-right: 1px solid #FDE68A;
+            vertical-align: middle;
+        }
+
+        .shabda-table td:last-child {
+            border-right: none;
+        }
+
+        .vibhakti-cell {
+            background: rgba(128, 0, 0, 0.03);
+        }
+
+        .vibhakti-name {
+            font-weight: 700;
+            font-size: 0.96rem;
+            color: var(--maroon-dark);
+        }
+
+        .karaka-name {
+            font-size: 0.78rem;
+            color: #9A3412;
+            margin-top: 2px;
+        }
+
+        .word-cell {
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .word-main-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .sanskrit-word {
+            font-size: 1.06rem;
+            font-weight: 700;
+            color: #0F172A;
+        }
+
+        .speaker-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #FEF3C7;
+            color: #B45309;
+            font-size: 0.78rem;
+            flex-shrink: 0;
+            border: 1px solid #FCD34D;
+            transition: all 0.15s;
+        }
+
+        .word-cell:hover .speaker-badge {
+            background: var(--saffron-main);
+            color: #FFFFFF;
+            border-color: var(--saffron-main);
+        }
+
+        .kannada-meaning {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Glowing Highlight During Speech */
+        .speaking-highlight {
+            background: linear-gradient(135deg, #FEF08A, #FDE047) !important;
+            box-shadow: inset 0 0 0 2.5px #EA580C, 0 0 12px rgba(234, 88, 12, 0.45) !important;
+            transform: scale(1.01);
+            z-index: 2;
+        }
+
+        .speaking-highlight .speaker-badge {
+            background: #EA580C !important;
+            color: #FFFFFF !important;
+            border-color: #7C2D12 !important;
+        }
+
+        /* All Tables Section Header */
+        .all-table-header {
+            background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+            padding: 14px 18px;
+            border-bottom: 1px solid #FCD34D;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .all-table-title {
+            font-family: 'Tiro Kannada', 'Tiro Devanagari Sanskrit', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--maroon-dark);
+        }
+
+        .all-table-meta {
+            font-size: 0.8rem;
+            color: #9A3412;
+        }
+
+        /* Flashcard Section (Properly hidden unless active!) */
+        .flashcard-wrapper {
+            max-width: 540px;
+            margin: 0 auto 24px;
+        }
+
+        .flashcard-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 0 4px;
+        }
+
+        .flashcard-hint {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .fc-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fc-arrow-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid #FCD34D;
+            background: #FEF3C7;
+            color: var(--maroon-dark);
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fc-counter {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--maroon-dark);
+        }
+
+        .flashcard-box {
+            background: linear-gradient(180deg, #FFFBEB 0%, #FFFFFF 100%);
+            border: 2px solid var(--gold-accent);
+            border-radius: 20px;
+            padding: 26px 22px;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.2s ease, background 0.25s ease;
+        }
+
+        .flashcard-box.is-flipped {
+            background: linear-gradient(145deg, var(--maroon-dark) 0%, var(--maroon-main) 100%);
+            color: #FEF3C7;
+            border-color: #FDE047;
+            text-align: left;
+        }
+
+        .fc-badge {
+            display: inline-block;
+            align-self: center;
+            background: #FEF3C7;
+            color: #9A3412;
+            border: 1px solid #FDBA74;
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .fc-front-title {
+            font-family: 'Tiro Kannada', 'Tiro Devanagari Sanskrit', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--maroon-dark);
+            margin-bottom: 12px;
+        }
+
+        .fc-tap-prompt {
+            font-size: 0.82rem;
+            color: #78716C;
+            font-style: italic;
+            margin-top: 12px;
+        }
+
+        .fc-back-header {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #FCD34D;
+            border-bottom: 1px solid rgba(253, 224, 71, 0.3);
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .fc-row {
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 10px 14px;
+            border-radius: 12px;
+        }
+
+        .fc-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .fc-row-label {
+            font-size: 0.75rem;
+            color: #FDE68A;
+            font-weight: 700;
+            display: block;
+        }
+
+        .fc-row-word {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .fc-row-meaning {
+            font-size: 0.84rem;
+            color: #FDE047;
+            margin-left: 6px;
+        }
+
+        /* Grammar Guide Card */
+        .guide-card {
+            background: #FFFBEB;
+            border: 1px solid #FCD34D;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .guide-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .guide-title {
+            font-family: 'Tiro Kannada', 'Tiro Devanagari Sanskrit', serif;
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--maroon-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .guide-item {
+            background: #FFFFFF;
+            border: 1px solid #FDE68A;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.84rem;
+            color: var(--text-dark);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        .guide-item strong {
+            color: var(--maroon-main);
+        }
+
+        /* Footer */
+        .app-footer {
+            background: var(--maroon-dark);
+            color: #FDE68A;
+            border-top: 3px solid var(--gold-accent);
+            padding: 18px 16px;
+            text-align: center;
+            font-size: 0.82rem;
+            margin-top: auto;
+        }
+
+        .footer-sub {
+            color: rgba(253, 230, 138, 0.75);
+            font-size: 0.75rem;
+            margin-top: 4px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
+            .brand-title {
+                font-size: 1.08rem;
+            }
+            .header-inner {
+                padding: 12px 12px;
+            }
+            .nav-pill {
+                padding: 6px 10px;
+                font-size: 0.76rem;
+            }
+            .tab-btn {
+                padding: 8px 12px;
+                font-size: 0.82rem;
+            }
+            .word-banner-title {
+                font-size: 1.15rem;
+            }
+            .shabda-table th,
+            .shabda-table td {
+                padding: 10px 12px;
+            }
+            .sanskrit-word {
+                font-size: 0.98rem;
+            }
         }
     </style>
 </head>
-<body class="bg-pattern text-slate-800 min-h-screen flex flex-col">
+<body>
 
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-maroon-900 via-maroon-800 to-maroon-900 text-amber-100 shadow-xl border-b-4 border-saffron-500 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-3">
-                <div class="flex items-center space-x-3 text-center sm:text-left">
-                    <div class="bg-saffron-600 text-white p-2.5 rounded-full shadow-md text-xl">
-                        🕉️
-                    </div>
-                    <div>
-                        <h1 id="mainHeaderTitle" class="text-xl md:text-2xl font-bold font-serifKannada tracking-wide text-amber-200">
-                            ಸಂಸ್ಕೃತ ಶಬ್ದ ಮತ್ತು ಧಾತು ರೂಪಗಳು
-                        </h1>
-                        <p id="mainHeaderSubtitle" class="text-xs text-saffron-100 opacity-90">
-                            ಕನ್ನಡ ಅರ್ಥ ಮತ್ತು ವ್ಯಾಕರಣ ವಿವರಣೆಯೊಂದಿಗೆ
-                        </p>
-                    </div>
+    <header class="app-header">
+        <div class="header-inner">
+            <div class="brand-box">
+                <div class="brand-emblem" aria-hidden="true">🕉️</div>
+                <div>
+                    <h1 id="mainHeaderTitle" class="brand-title">ಸಂಸ್ಕೃತ ಶಬ್ದ ಮತ್ತು ಧಾತು ರೂಪಗಳು</h1>
+                    <p id="mainHeaderSubtitle" class="brand-subtitle">ಕನ್ನಡ ಅರ್ಥ ಮತ್ತು ವ್ಯಾಕರಣ ವಿವರಣೆಯೊಂದಿಗೆ</p>
+                </div>
+            </div>
+
+            <!-- Global Controls -->
+            <div class="header-controls">
+                <!-- Script Switcher (Kannada <-> Sanskrit Devanagari) -->
+                <div class="script-switch" role="group" aria-label="Script Switcher">
+                    <button id="scriptKnBtn" class="script-btn active" onclick="setScript('kn')">ಕನ್ನಡ</button>
+                    <button id="scriptSaBtn" class="script-btn" onclick="setScript('sa')">संस्कृतम्</button>
                 </div>
 
-                <!-- Global Controls -->
-                <div class="flex flex-wrap items-center justify-center gap-2">
-                    <!-- Script Switcher (Kannada <-> Sanskrit Devanagari) -->
-                    <div class="inline-flex rounded-lg bg-maroon-950 p-0.5 border border-saffron-500/40 shadow-inner">
-                        <button id="scriptKnBtn" onclick="setScript('kn')" class="px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all bg-saffron-600 text-white shadow">
-                            ಕನ್ನಡ
-                        </button>
-                        <button id="scriptSaBtn" onclick="setScript('sa')" class="px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all text-amber-200 hover:text-white">
-                            संस्कृतम्
-                        </button>
-                    </div>
-
-                    <button id="viewTableBtn" onclick="setViewMode('table')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors bg-saffron-600 text-white shadow">
-                        <i class="fa-solid fa-table-cells mr-1"></i> <span id="tableBtnText">ಕೋಷ್ಟಕ</span>
-                    </button>
-                    <button id="viewAllTablesBtn" onclick="setViewMode('all')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors bg-maroon-700 hover:bg-maroon-600 text-amber-100 border border-saffron-500/30">
-                        <i class="fa-solid fa-layer-group mr-1"></i> <span id="allBtnText">ಎಲ್ಲಾ ಕೋಷ್ಟಕ</span>
-                    </button>
-                    <button id="viewFlashcardBtn" onclick="setViewMode('flashcard')" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors bg-maroon-700 hover:bg-maroon-600 text-amber-100 border border-saffron-500/30">
-                        <i class="fa-solid fa-clone mr-1"></i> <span id="cardBtnText">ಅಭ್ಯಾಸ</span>
-                    </button>
-                    <button id="toggleMeaningBtn" onclick="toggleMeanings()" class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors bg-amber-800 hover:bg-amber-700 text-amber-100 border border-saffron-500/30">
-                        <i class="fa-solid fa-eye-slash mr-1"></i> <span id="toggleText">ಅರ್ಥ ಮುಚ್ಚು</span>
-                    </button>
-                </div>
+                <button id="viewTableBtn" class="nav-pill active" onclick="setViewMode('table')">
+                    <span>📋</span> <span id="tableBtnText">ಒಂದೊಂದಾಗಿ</span>
+                </button>
+                <button id="viewAllTablesBtn" class="nav-pill" onclick="setViewMode('all')">
+                    <span>📚</span> <span id="allBtnText">ಎಲ್ಲಾ ಕೋಷ್ಟಕಗಳು</span>
+                </button>
+                <button id="viewFlashcardBtn" class="nav-pill" onclick="setViewMode('flashcard')">
+                    <span>🗂️</span> <span id="cardBtnText">ಅಭ್ಯಾಸ</span>
+                </button>
+                <button id="toggleMeaningBtn" class="nav-pill" onclick="toggleMeanings()">
+                    <span id="toggleIcon">👁️</span> <span id="toggleText">ಅರ್ಥ ಮುಚ್ಚು</span>
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Main Content Area -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <main class="main-container">
 
-        <!-- Search and Shabda/Dhatu Selector Navigation -->
-        <div class="bg-white rounded-2xl shadow-lg border border-amber-200 p-4 mb-6">
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                
-                <!-- Word & Dhatu Tabs -->
-                <div class="flex flex-wrap gap-2" id="categoryTabs">
-                    <!-- Populated dynamically via JS -->
+        <!-- Shabda & Dhatu Tabs + Search Bar -->
+        <section class="control-card">
+            <div class="control-top-row">
+                <div class="category-tabs" id="categoryTabs">
+                    <!-- Populated via JS -->
                 </div>
 
-                <!-- Search Input -->
-                <div class="relative min-w-[240px]">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="ಶಬ್ದ/ಧಾತು/ಅರ್ಥ ಹುಡುಕಿ..." 
-                           class="w-full pl-9 pr-4 py-2 border border-amber-300 rounded-xl focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 outline-none text-sm bg-amber-50/30">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" class="search-input" oninput="handleSearch()" placeholder="ಶಬ್ದ / ಧಾತು / ಅರ್ಥ ಹುಡುಕಿ...">
                 </div>
             </div>
 
-            <!-- Sub-selector for Dhatu when Dhatu tab is active -->
-            <div id="dhatuSubSelector" class="hidden mt-3 pt-3 border-t border-amber-100 flex flex-wrap items-center gap-2">
-                <span class="text-xs font-bold text-maroon-900 mr-1" id="dhatuSelectLabel">ಧಾತು ಆಯ್ಕೆ (Select Dhatu):</span>
-                <div id="dhatuSubTabs" class="flex flex-wrap gap-2"></div>
+            <!-- Sub-selector for Dhatu (visible only when Dhatu tab is selected) -->
+            <div id="dhatuSubSelector" class="dhatu-sub-bar hidden">
+                <span class="dhatu-label" id="dhatuSelectLabel">ಧಾತು ಆಯ್ಕೆ (Select Dhatu):</span>
+                <div id="dhatuSubTabs" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
             </div>
-        </div>
+        </section>
 
-        <!-- Active Word Banner / Header Information + Play All Controls -->
-        <div id="wordHeader" class="bg-gradient-to-r from-saffron-100 via-amber-50 to-saffron-100 border-l-8 border-saffron-600 rounded-xl p-5 mb-6 shadow-sm">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h2 id="wordTitle" class="text-2xl md:text-3xl font-bold font-serifKannada text-maroon-900">
-                        <!-- Word Title -->
-                    </h2>
-                    <p id="wordMeta" class="text-sm font-medium text-saffron-800 mt-1">
-                        <!-- Grammar metadata -->
-                    </p>
-                </div>
-
-                <!-- Audio Play All & Tip Controls -->
-                <div class="flex flex-wrap items-center gap-2">
-                    <button id="playAllBtn" onclick="togglePlayAll()" class="px-4 py-2.5 rounded-xl text-sm font-bold transition-all bg-gradient-to-r from-maroon-800 to-maroon-900 hover:from-maroon-700 hover:to-maroon-800 text-amber-100 shadow-md flex items-center gap-2 border border-saffron-500/40">
-                        <i id="playAllIcon" class="fa-solid fa-volume-high text-saffron-400"></i>
-                        <span id="playAllText">ಎಲ್ಲಾ ಪದಗಳನ್ನು ಆಲಿಸಿ (Play All)</span>
-                    </button>
-                    <button id="stopAllBtn" onclick="stopPlayAll()" class="hidden px-3 py-2.5 rounded-xl text-sm font-bold transition-all bg-red-700 hover:bg-red-800 text-white shadow-md flex items-center gap-1.5">
-                        <i class="fa-solid fa-stop"></i>
-                        <span id="stopAllText">ನಿಲ್ಲಿಸಿ</span>
-                    </button>
-                </div>
+        <!-- Active Word Banner + Play All Controls -->
+        <section id="wordHeader" class="word-banner">
+            <div>
+                <h2 id="wordTitle" class="word-banner-title">ಅಕಾರಾಂತಃ ಪುಂಲಿಂಗಃ ರಾಮಶಬ್ದಃ</h2>
+                <p id="wordMeta" class="word-banner-meta">Akārāntaḥ Puṁliṅgaḥ Rāma-śabdaḥ (Masculine ending in "a")</p>
             </div>
-        </div>
+
+            <div class="audio-actions">
+                <button id="playAllBtn" class="play-all-btn" onclick="togglePlayAll()">
+                    <span id="playAllIcon">🔊</span>
+                    <span id="playAllText">ಎಲ್ಲಾ ಪದಗಳನ್ನು ಆಲಿಸಿ (Play All)</span>
+                </button>
+                <button id="stopAllBtn" class="stop-all-btn hidden" onclick="stopPlayAll()">
+                    <span>⏹️</span>
+                    <span id="stopAllText">ನಿಲ್ಲಿಸಿ</span>
+                </button>
+            </div>
+        </section>
 
         <!-- Single Table View Section -->
-        <div id="tableViewSection" class="bg-white rounded-2xl shadow-xl border border-amber-200 overflow-hidden transition-all duration-300">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse min-w-[680px]">
+        <section id="tableViewSection" class="table-card">
+            <div class="table-scroll">
+                <table class="shabda-table">
                     <thead>
-                        <tr id="tableHeaderRow" class="bg-gradient-to-r from-maroon-800 to-maroon-900 text-amber-100 text-sm md:text-base border-b border-saffron-600">
-                            <!-- Populated dynamically based on Shabda vs Dhatu and Script -->
+                        <tr id="tableHeaderRow">
+                            <!-- Populated dynamically -->
                         </tr>
                     </thead>
-                    <tbody id="shabdaTableBody" class="divide-y divide-amber-100 text-slate-800 text-base">
-                        <!-- Populated by JS -->
+                    <tbody id="shabdaTableBody">
+                        <!-- Populated dynamically -->
                     </tbody>
                 </table>
             </div>
-        </div>
+        </section>
 
         <!-- All Tables View Section (Hidden by Default) -->
-        <div id="allTablesViewSection" class="hidden space-y-8">
-            <!-- Populated dynamically with all Shabdas & Dhatus -->
-        </div>
+        <section id="allTablesViewSection" class="hidden">
+            <!-- Populated dynamically -->
+        </section>
 
-        <!-- Flashcard View Section (Hidden by Default) -->
-        <div id="flashcardViewSection" class="hidden">
-            <div class="flex justify-between items-center mb-4 px-2">
-                <p id="flashcardInstruction" class="text-sm text-slate-600">ಕಾರ್ಡ್ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ ಉತ್ತರ/ಅರ್ಥ ನೋಡಿ. (Click card to flip)</p>
-                <div class="flex gap-2">
-                    <button onclick="prevFlashcard()" class="p-2 rounded-lg bg-amber-100 hover:bg-amber-200 text-maroon-900">
-                        <i class="fa-solid fa-chevron-left"></i>
-                    </button>
-                    <span id="flashcardCounter" class="self-center font-bold text-sm text-maroon-900">1 / 8</span>
-                    <button onclick="nextFlashcard()" class="p-2 rounded-lg bg-amber-100 hover:bg-amber-200 text-maroon-900">
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
+        <!-- Flashcard Practice Mode (Hidden by Default) -->
+        <section id="flashcardViewSection" class="flashcard-wrapper hidden">
+            <div class="flashcard-nav">
+                <p id="flashcardInstruction" class="flashcard-hint">ಕಾರ್ಡ್ ಸ್ಪರ್ಶಿಸಿ ಉತ್ತರ/ಅರ್ಥ ನೋಡಿ (Tap card to flip)</p>
+                <div class="fc-controls">
+                    <button class="fc-arrow-btn" onclick="prevFlashcard()" aria-label="Previous Card">◀</button>
+                    <span id="flashcardCounter" class="fc-counter">1 / 8</span>
+                    <button class="fc-arrow-btn" onclick="nextFlashcard()" aria-label="Next Card">▶</button>
                 </div>
             </div>
 
-            <div class="max-w-xl mx-auto">
-                <div id="flashcardElement" onclick="this.classList.toggle('flipped')" class="flip-card w-full h-80 cursor-pointer">
-                    <div class="flip-card-inner relative w-full h-full rounded-2xl shadow-2xl border-2 border-saffron-500 bg-gradient-to-b from-amber-50 to-white p-6 flex flex-col justify-between text-center">
-                        <!-- Front -->
-                        <div class="flip-card-front absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-b from-saffron-50 to-amber-100/50 rounded-2xl">
-                            <span id="fcVibhakti" class="text-sm font-bold uppercase tracking-wider text-saffron-700 bg-saffron-100 px-3 py-1 rounded-full mb-3 border border-saffron-300">
-                                ವಿಭಕ್ತಿ
-                            </span>
-                            <h3 id="fcTitle" class="text-2xl sm:text-3xl font-bold font-serifKannada text-maroon-900 mb-2">
-                                -
-                            </h3>
-                            <p id="fcMeaningHint" class="text-xs text-slate-500 italic mt-4">
-                                [ಕಾರ್ಡ್ ಸ್ಪರ್ಶಿಸಿ ರೂಪಗಳನ್ನು ನೋಡಿ]
-                            </p>
+            <div id="flashcardBox" class="flashcard-box" onclick="flipFlashcard()">
+                <!-- Front Side -->
+                <div id="fcFrontView">
+                    <span id="fcVibhakti" class="fc-badge">ಪ್ರಥಮಾ - (ಕರ್ತೃ - Subject)</span>
+                    <h3 id="fcTitle" class="fc-front-title">ರಾಮಶಬ್ದಃ - ಪ್ರಥಮಾ</h3>
+                    <p id="fcMeaningHint" class="fc-tap-prompt">[ಕಾರ್ಡ್ ಸ್ಪರ್ಶಿಸಿ ರೂಪಗಳನ್ನು ನೋಡಿ / Tap to reveal forms]</p>
+                </div>
+
+                <!-- Back Side -->
+                <div id="fcBackView" class="hidden">
+                    <div id="fcBackHeader" class="fc-back-header">ರೂಪಗಳು ಮತ್ತು ಕನ್ನಡ ಅರ್ಥ (Forms & Meanings)</div>
+                    <div class="fc-row">
+                        <span id="fcSingLabel" class="fc-row-label">ಏಕವಚನಮ್ (Singular):</span>
+                        <div>
+                            <span id="fcSingular" class="fc-row-word"></span>
+                            <span id="fcSingularM" class="fc-row-meaning"></span>
                         </div>
-                        <!-- Back -->
-                        <div class="flip-card-back absolute inset-0 flex flex-col justify-center p-6 bg-maroon-900 text-amber-50 rounded-2xl border-2 border-saffron-400">
-                            <div id="fcBackHeader" class="text-xs font-semibold text-saffron-300 mb-2 border-b border-maroon-700 pb-1">
-                                ರೂಪಗಳು ಮತ್ತು ಕನ್ನಡ ಅರ್ಥ (Declensions & Meanings)
-                            </div>
-                            <div class="space-y-3 text-left my-auto">
-                                <div>
-                                    <span id="fcSingLabel" class="text-xs text-saffron-200 font-bold block">ಏಕವಚನಮ್:</span>
-                                    <span id="fcSingular" class="text-lg font-bold text-white"></span>
-                                    <span id="fcSingularM" class="text-xs text-amber-200 block italic"></span>
-                                </div>
-                                <div>
-                                    <span id="fcDualLabel" class="text-xs text-saffron-200 font-bold block">ದ್ವಿವಚನಮ್:</span>
-                                    <span id="fcDual" class="text-lg font-bold text-white"></span>
-                                    <span id="fcDualM" class="text-xs text-amber-200 block italic"></span>
-                                </div>
-                                <div>
-                                    <span id="fcPlurLabel" class="text-xs text-saffron-200 font-bold block">ಬಹುವಚನಮ್:</span>
-                                    <span id="fcPlural" class="text-lg font-bold text-white"></span>
-                                    <span id="fcPluralM" class="text-xs text-amber-200 block italic"></span>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="fc-row">
+                        <span id="fcDualLabel" class="fc-row-label">ದ್ವಿವಚನಮ್ (Dual):</span>
+                        <div>
+                            <span id="fcDual" class="fc-row-word"></span>
+                            <span id="fcDualM" class="fc-row-meaning"></span>
+                        </div>
+                    </div>
+                    <div class="fc-row">
+                        <span id="fcPlurLabel" class="fc-row-label">ಬಹುವಚನಮ್ (Plural):</span>
+                        <div>
+                            <span id="fcPlural" class="fc-row-word"></span>
+                            <span id="fcPluralM" class="fc-row-meaning"></span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Quick Grammar Reference Card -->
-        <div class="mt-8 bg-amber-50 rounded-2xl p-6 border border-amber-200">
-            <h3 id="grammarGuideTitle" class="text-lg font-bold text-maroon-900 mb-3 font-serifKannada flex items-center gap-2">
-                <i class="fa-solid fa-book-bookmark text-saffron-600"></i> ವಿಭಕ್ತಿ, ಕಾರಕ ಮತ್ತು ಲಕಾರ ಪರಿಚಯ (Grammar Guide)
-            </h3>
-            <div id="grammarGuideGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs md:text-sm">
-                <!-- Populated dynamically for Kannada / Sanskrit -->
+        <!-- Collapsible Grammar Guide Card -->
+        <section class="guide-card">
+            <div class="guide-header" onclick="toggleGrammarGuide()">
+                <h3 id="grammarGuideTitle" class="guide-title">
+                    <span>📖</span> ವಿಭಕ್ತಿ, ಕಾರಕ ಮತ್ತು ಲಕಾರ ಪರಿಚಯ (Grammar Guide)
+                </h3>
+                <span id="guideToggleArrow" style="font-weight:700; color:#800000;">▼</span>
             </div>
-        </div>
+            <div id="grammarGuideGrid" class="guide-grid">
+                <!-- Populated dynamically -->
+            </div>
+        </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-maroon-900 text-amber-200 border-t-2 border-saffron-500 py-6 mt-10">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs md:text-sm space-y-2">
-            <p id="footerLine1" class="font-serifKannada text-amber-100">ಸಂಸ್ಕೃತ ಸುಭಾಷಿತಃ | ಸಂಸ್ಕೃತ ಭಾಷಾ ಕಲಿಕಾ ಸಾಹಿತ್ಯ</p>
-            <p class="text-amber-300/70">Samskrita Shabda & Dhatu Forms in Kannada & Devanagari Script with Kannada Meanings</p>
-        </div>
+    <footer class="app-footer">
+        <p id="footerLine1">ಸಂಸ್ಕೃತ ಸುಭಾಷಿತಃ | ಸಂಸ್ಕೃತ ಭಾಷಾ ಕಲಿಕಾ ಸಾಹಿತ್ಯ</p>
+        <p class="footer-sub">Samskrita Shabda & Dhatu Forms in Kannada & Devanagari Script with Kannada Meanings</p>
     </footer>
 
-    <!-- JavaScript Data and Logic -->
+    <!-- Application Data & Logic -->
     <script>
-        // Dual-script (Kannada & Sanskrit Devanagari) Database
-        // Note: Sambodhana Prathama is strictly ordered immediately after Prathama and before Dvitiya!
+        // 1. Shabda Declensions Data (Vibhakti order: Prathama -> Sambodhana Prathama -> Dvitiya -> ... -> Saptami)
         const shabdaData = [
             {
                 id: 'rama',
@@ -489,12 +1162,12 @@
             }
         ];
 
-        // Dhatu (Verb Conjugation) Database
+        // 2. Dhatu (Verb Conjugation) Data - Lat Lakarah
         const dhatuData = [
             {
                 id: 'bhu_lat',
                 type: 'dhatu',
-                tabName: { kn: 'ಭೂ ಧಾತು (ಲಟ್)', sa: 'भू धातुः (लट्)' },
+                tabName: { kn: 'ಭೂ ಧಾತು (ಭವತಿ)', sa: 'भू धातुः (भवति)' },
                 subTitle: { kn: 'ಭೂ (ಸತ್ತಾಯಾಮ್) ಧಾತುಃ - ಲಟ್ ಲಕಾರಃ (ವರ್ತಮಾನ ಕಾಲ)', sa: 'भू (सत्तायाम्) धातुः - लट् लकारः (वर्तमान कालः)' },
                 meta: 'Bhū Dhātu (To be / exist) - Laṭ Lakāraḥ (Present Tense - Parasmaipada)',
                 forms: [
@@ -524,7 +1197,7 @@
             {
                 id: 'gam_lat',
                 type: 'dhatu',
-                tabName: { kn: 'ಗಮ್ ಧಾತು (ಲಟ್)', sa: 'गम् धातुः (लट्)' },
+                tabName: { kn: 'ಗಮ್ ಧಾತು (ಗಚ್ಛತಿ)', sa: 'गम् धातुः (गच्छति)' },
                 subTitle: { kn: 'ಗಮ್ (ಗತೌ) ಧಾತುಃ - ಲಟ್ ಲಕಾರಃ (ವರ್ತಮಾನ ಕಾಲ)', sa: 'गम् (गतौ) धातुः - लट् लकारः (वर्तमान कालः)' },
                 meta: 'Gam Dhātu (To go) - Laṭ Lakāraḥ (Present Tense - Parasmaipada)',
                 forms: [
@@ -554,7 +1227,7 @@
             {
                 id: 'path_lat',
                 type: 'dhatu',
-                tabName: { kn: 'ಪಠ್ ಧಾತು (ಲಟ್)', sa: 'पठ् धातुः (लट्)' },
+                tabName: { kn: 'ಪಠ್ ಧಾತು (ಪಠತಿ)', sa: 'पठ् धातुः (पठति)' },
                 subTitle: { kn: 'ಪಠ್ (ವ್ಯಕ್ತಾಯಾಂ ವಾಚಿ) ಧಾತುಃ - ಲಟ್ ಲಕಾರಃ (ವರ್ತಮಾನ ಕಾಲ)', sa: 'पठ् (व्यक्तायां वाचि) धातुः - लट् लकारः (वर्तमान कालः)' },
                 meta: 'Paṭh Dhātu (To read / study) - Laṭ Lakāraḥ (Present Tense - Parasmaipada)',
                 forms: [
@@ -583,18 +1256,18 @@
             }
         ];
 
-        // UI Labels Dictionary for Kannada & Sanskrit
+        // 3. UI Labels for Kannada and Sanskrit Devanagari
         const uiLabels = {
             kn: {
                 mainTitle: 'ಸಂಸ್ಕೃತ ಶಬ್ದ ಮತ್ತು ಧಾತು ರೂಪಗಳು',
                 mainSub: 'ಕನ್ನಡ ಅರ್ಥ ಮತ್ತು ವ್ಯಾಕರಣ ವಿವರಣೆಯೊಂದಿಗೆ',
-                tableBtn: 'ಕೋಷ್ಟಕ',
-                allBtn: 'ಎಲ್ಲಾ ಕೋಷ್ಟಕ',
+                tableBtn: 'ಒಂದೊಂದಾಗಿ',
+                allBtn: 'ಎಲ್ಲಾ ಕೋಷ್ಟಕಗಳು',
                 cardBtn: 'ಅಭ್ಯಾಸ',
                 hideMeaning: 'ಅರ್ಥ ಮುಚ್ಚು',
                 showMeaning: 'ಅರ್ಥ ತೋರಿಸು',
                 dhatuTab: 'ಧಾತು ರೂಪಗಳು',
-                dhatuSelect: 'ಧಾತು ಆಯ್ಕೆ:',
+                dhatuSelect: 'ಧಾತು ಆಯ್ಕೆ (Select Dhatu):',
                 playAll: 'ಎಲ್ಲಾ ಪದಗಳನ್ನು ಆಲಿಸಿ (Play All)',
                 playing: 'ಆಲಿಸಲಾಗುತ್ತಿದೆ...',
                 stopAll: 'ನಿಲ್ಲಿಸಿ',
@@ -618,13 +1291,13 @@
             sa: {
                 mainTitle: 'संस्कृत शब्द-धातु रूपाणि',
                 mainSub: 'कन्नड-अर्थेन व्याकरण-विवरणेन च सह',
-                tableBtn: 'कोष्ठकम्',
-                allBtn: 'सर्वाणि रूपाणि',
+                tableBtn: 'एकैकशः',
+                allBtn: 'सर्वाणि कोष्ठकानि',
                 cardBtn: 'अभ्यासः',
                 hideMeaning: 'अर्थं गोपयतु',
                 showMeaning: 'अर्थं दर्शयतु',
                 dhatuTab: 'धातुरूपाणि',
-                dhatuSelect: 'धातुचयनम्:',
+                dhatuSelect: 'धातुचयनम् (Select Dhatu):',
                 playAll: 'सर्वान् शब्दान् शृणोतु (Play All)',
                 playing: 'श्रावयति...',
                 stopAll: 'विरमतु',
@@ -647,28 +1320,28 @@
             }
         };
 
-        // Application State
+        // App State
         let currentScript = 'kn'; // 'kn' or 'sa'
         let activeCategory = 'rama'; // 'rama', 'hari', 'shambhu', or 'dhatu'
         let activeDhatuIndex = 0;
         let showMeanings = true;
         let viewMode = 'table'; // 'table', 'all', or 'flashcard'
         let currentFlashcardIdx = 0;
+        let isFlashcardFlipped = false;
         let searchQuery = '';
+        let isGuideOpen = true;
 
         // Sequential Audio Playback State
         let isPlayingAll = false;
         let playQueue = [];
         let playIndex = 0;
 
-        // DOM Loaded Init
         window.addEventListener('DOMContentLoaded', () => {
             updateStaticUI();
             renderTabs();
             renderActiveWord();
         });
 
-        // Get Currently Selected Item (Shabda or Dhatu)
         function getCurrentItem() {
             if (activeCategory === 'dhatu') {
                 return dhatuData[activeDhatuIndex];
@@ -676,28 +1349,16 @@
             return shabdaData.find(s => s.id === activeCategory) || shabdaData[0];
         }
 
-        // Switch Script between Kannada ('kn') and Sanskrit Devanagari ('sa')
         function setScript(script) {
             stopPlayAll();
             currentScript = script;
-            
-            const knBtn = document.getElementById('scriptKnBtn');
-            const saBtn = document.getElementById('scriptSaBtn');
-            
-            if (script === 'kn') {
-                knBtn.className = 'px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all bg-saffron-600 text-white shadow';
-                saBtn.className = 'px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all text-amber-200 hover:text-white';
-            } else {
-                saBtn.className = 'px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all bg-saffron-600 text-white shadow';
-                knBtn.className = 'px-3 py-1.5 rounded-md text-xs sm:text-sm font-bold transition-all text-amber-200 hover:text-white';
-            }
-
+            document.getElementById('scriptKnBtn').classList.toggle('active', script === 'kn');
+            document.getElementById('scriptSaBtn').classList.toggle('active', script === 'sa');
             updateStaticUI();
             renderTabs();
             renderActiveWord();
         }
 
-        // Update Static UI Texts for currentScript
         function updateStaticUI() {
             const labels = uiLabels[currentScript];
             document.getElementById('mainHeaderTitle').innerText = labels.mainTitle;
@@ -710,77 +1371,54 @@
             document.getElementById('playAllText').innerText = isPlayingAll ? labels.playing : labels.playAll;
             document.getElementById('stopAllText').innerText = labels.stopAll;
 
-            // Grammar Guide
-            document.getElementById('grammarGuideTitle').innerHTML = `<i class="fa-solid fa-book-bookmark text-saffron-600"></i> ${labels.grammarTitle}`;
+            document.getElementById('grammarGuideTitle').innerHTML = `<span>📖</span> ${labels.grammarTitle}`;
             document.getElementById('grammarGuideGrid').innerHTML = labels.guideItems.map(([title, desc]) => `
-                <div class="bg-white p-2.5 rounded-lg border border-amber-200 shadow-sm">
-                    <span class="font-bold text-maroon-800">${title}</span> ${desc}
+                <div class="guide-item">
+                    <strong>${title}</strong> ${desc}
                 </div>
             `).join('');
         }
 
-        // Render Main Category Tabs + Dhatu Sub-tabs
         function renderTabs() {
             const tabsContainer = document.getElementById('categoryTabs');
             const labels = uiLabels[currentScript];
 
             const shabdaButtons = shabdaData.map(data => {
-                const isActive = activeCategory === data.id;
+                const isActive = activeCategory === data.id && viewMode !== 'all';
                 return `
-                    <button onclick="selectCategory('${data.id}')" 
-                            class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                                isActive 
-                                ? 'bg-gradient-to-r from-saffron-600 to-saffron-700 text-white shadow-md shadow-saffron-500/20' 
-                                : 'bg-amber-100/60 hover:bg-amber-200/80 text-maroon-900 border border-amber-200'
-                            }">
-                        <i class="fa-solid fa-scroll mr-1.5 ${isActive ? 'text-amber-200' : 'text-saffron-600'}"></i>
-                        ${data.name[currentScript]}
+                    <button class="tab-btn ${isActive ? 'active' : ''}" onclick="selectCategory('${data.id}')">
+                        <span>📜</span> ${data.name[currentScript]}
                     </button>
                 `;
             }).join('');
 
-            const isDhatuActive = activeCategory === 'dhatu';
+            const isDhatuActive = activeCategory === 'dhatu' && viewMode !== 'all';
             const dhatuButton = `
-                <button onclick="selectCategory('dhatu')" 
-                        class="px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                            isDhatuActive 
-                            ? 'bg-gradient-to-r from-maroon-800 to-maroon-900 text-amber-100 shadow-md ring-2 ring-saffron-500' 
-                            : 'bg-amber-100/60 hover:bg-amber-200/80 text-maroon-900 border border-amber-200'
-                        }">
-                    <i class="fa-solid fa-bolt mr-1.5 ${isDhatuActive ? 'text-saffron-400' : 'text-maroon-700'}"></i>
-                    ${labels.dhatuTab}
+                <button class="tab-btn dhatu-tab ${isDhatuActive ? 'active' : ''}" onclick="selectCategory('dhatu')">
+                    <span>⚡</span> ${labels.dhatuTab}
                 </button>
             `;
 
             tabsContainer.innerHTML = shabdaButtons + dhatuButton;
 
-            // Render Dhatu sub-selector if Dhatu is active
             const dhatuSubSec = document.getElementById('dhatuSubSelector');
-            if (isDhatuActive && viewMode !== 'all') {
+            if (activeCategory === 'dhatu' && viewMode !== 'all') {
                 dhatuSubSec.classList.remove('hidden');
-                document.getElementById('dhatuSubTabs').innerHTML = dhatuData.map((d, idx) => {
-                    const activeSub = idx === activeDhatuIndex;
-                    return `
-                        <button onclick="selectDhatu(${idx})" 
-                                class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
-                                    activeSub 
-                                    ? 'bg-saffron-600 text-white shadow-sm' 
-                                    : 'bg-amber-50 hover:bg-amber-100 text-maroon-900 border border-amber-300'
-                                }">
-                            ${d.tabName[currentScript]}
-                        </button>
-                    `;
-                }).join('');
+                document.getElementById('dhatuSubTabs').innerHTML = dhatuData.map((d, idx) => `
+                    <button class="sub-tab-btn ${idx === activeDhatuIndex ? 'active' : ''}" onclick="selectDhatu(${idx})">
+                        ${d.tabName[currentScript]}
+                    </button>
+                `).join('');
             } else {
                 dhatuSubSec.classList.add('hidden');
             }
         }
 
-        // Select Main Category
         function selectCategory(catId) {
             stopPlayAll();
             activeCategory = catId;
             currentFlashcardIdx = 0;
+            isFlashcardFlipped = false;
             if (viewMode === 'all') {
                 setViewMode('table');
                 return;
@@ -789,20 +1427,17 @@
             renderActiveWord();
         }
 
-        // Select Specific Dhatu
         function selectDhatu(idx) {
             stopPlayAll();
             activeDhatuIndex = idx;
             currentFlashcardIdx = 0;
+            isFlashcardFlipped = false;
             renderTabs();
             renderActiveWord();
         }
 
-        // Render Active Word or All Tables
         function renderActiveWord() {
             const item = getCurrentItem();
-
-            // Update Banner Header
             document.getElementById('wordTitle').innerText = item.subTitle[currentScript];
             document.getElementById('wordMeta').innerText = item.meta;
 
@@ -815,7 +1450,17 @@
             }
         }
 
-        // Helper to build table HTML for a given Shabda or Dhatu
+        function buildTableHeaderHTML(itemType) {
+            const labels = uiLabels[currentScript];
+            const firstCol = itemType === 'dhatu' ? labels.colPurusha : labels.colVibhakti;
+            return `
+                <th>${firstCol}</th>
+                <th>${labels.colSing}</th>
+                <th>${labels.colDual}</th>
+                <th>${labels.colPlur}</th>
+            `;
+        }
+
         function buildTableRowsHTML(item, tablePrefix = 'main') {
             const filteredForms = item.forms.filter(f => {
                 if (!searchQuery) return true;
@@ -837,7 +1482,7 @@
             if (filteredForms.length === 0) {
                 return `
                     <tr>
-                        <td colspan="4" class="text-center py-8 text-slate-500 font-medium">
+                        <td colspan="4" style="text-align:center; padding:28px; color:#78716C; font-weight:600;">
                             ಯಾವ ಫಲಿತಾಂಶವೂ ಕಂಡುಬಂದಿಲ್ಲ (No matching forms found)
                         </td>
                     </tr>
@@ -845,93 +1490,69 @@
             }
 
             return filteredForms.map((row, idx) => {
-                const bgClass = idx % 2 === 0 ? 'bg-amber-50/30' : 'bg-white';
                 const isSambodhana = row.vibhakti.kn.includes('ಸಂಬೋಧನಾ');
-                const rowHighlight = isSambodhana ? 'bg-saffron-50/60' : bgClass;
-
                 const sWord = row.singular[currentScript];
                 const dWord = row.dual[currentScript];
                 const pWord = row.plural[currentScript];
 
-                // Always use Kannada script for TTS fallback clarity when kn-IN voice is used
-                const sSpeak = row.singular.kn;
-                const dSpeak = row.dual.kn;
-                const pSpeak = row.plural.kn;
-
                 return `
-                    <tr class="${rowHighlight} hover:bg-saffron-50/80 transition-colors">
-                        <td class="p-3.5 border-r border-amber-200/60 font-semibold text-maroon-900">
-                            <div>${row.vibhakti[currentScript]}</div>
-                            <div class="text-xs text-saffron-700 font-normal mt-0.5">${row.karaka[currentScript]}</div>
+                    <tr class="${isSambodhana ? 'sambodhana-row' : ''}">
+                        <td class="vibhakti-cell">
+                            <div class="vibhakti-name">${row.vibhakti[currentScript]}</div>
+                            <div class="karaka-name">${row.karaka[currentScript]}</div>
                         </td>
-                        <td id="${tablePrefix}-cell-${idx}-0" class="p-3.5 border-r border-amber-200/60 cursor-pointer hover:text-saffron-700 transition-all" onclick="speakSingleWord('${sSpeak}', this.id)">
-                            <div class="font-bold text-slate-900 flex items-center justify-between">
-                                <span>${sWord}</span>
-                                <i class="fa-solid fa-volume-low text-xs text-amber-500/70"></i>
+                        <td id="${tablePrefix}-cell-${idx}-0" class="word-cell" onclick="speakSingleWord('${row.singular.kn}', this.id)">
+                            <div class="word-main-row">
+                                <span class="sanskrit-word">${sWord}</span>
+                                <span class="speaker-badge" title="Listen">🔊</span>
                             </div>
-                            ${showMeanings ? `<div class="text-xs text-slate-600 mt-1 italic">(${row.singularM})</div>` : ''}
+                            ${showMeanings ? `<div class="kannada-meaning">(${row.singularM})</div>` : ''}
                         </td>
-                        <td id="${tablePrefix}-cell-${idx}-1" class="p-3.5 border-r border-amber-200/60 cursor-pointer hover:text-saffron-700 transition-all" onclick="speakSingleWord('${dSpeak}', this.id)">
-                            <div class="font-bold text-slate-900 flex items-center justify-between">
-                                <span>${dWord}</span>
-                                <i class="fa-solid fa-volume-low text-xs text-amber-500/70"></i>
+                        <td id="${tablePrefix}-cell-${idx}-1" class="word-cell" onclick="speakSingleWord('${row.dual.kn}', this.id)">
+                            <div class="word-main-row">
+                                <span class="sanskrit-word">${dWord}</span>
+                                <span class="speaker-badge" title="Listen">🔊</span>
                             </div>
-                            ${showMeanings ? `<div class="text-xs text-slate-600 mt-1 italic">(${row.dualM})</div>` : ''}
+                            ${showMeanings ? `<div class="kannada-meaning">(${row.dualM})</div>` : ''}
                         </td>
-                        <td id="${tablePrefix}-cell-${idx}-2" class="p-3.5 cursor-pointer hover:text-saffron-700 transition-all" onclick="speakSingleWord('${pSpeak}', this.id)">
-                            <div class="font-bold text-slate-900 flex items-center justify-between">
-                                <span>${pWord}</span>
-                                <i class="fa-solid fa-volume-low text-xs text-amber-500/70"></i>
+                        <td id="${tablePrefix}-cell-${idx}-2" class="word-cell" onclick="speakSingleWord('${row.plural.kn}', this.id)">
+                            <div class="word-main-row">
+                                <span class="sanskrit-word">${pWord}</span>
+                                <span class="speaker-badge" title="Listen">🔊</span>
                             </div>
-                            ${showMeanings ? `<div class="text-xs text-slate-600 mt-1 italic">(${row.pluralM})</div>` : ''}
+                            ${showMeanings ? `<div class="kannada-meaning">(${row.pluralM})</div>` : ''}
                         </td>
                     </tr>
                 `;
             }).join('');
         }
 
-        // Build Table Header HTML
-        function buildTableHeaderHTML(itemType) {
-            const labels = uiLabels[currentScript];
-            const firstCol = itemType === 'dhatu' ? labels.colPurusha : labels.colVibhakti;
-            return `
-                <th class="p-4 w-1/4 font-semibold border-r border-maroon-700/50">${firstCol}</th>
-                <th class="p-4 w-1/4 font-semibold border-r border-maroon-700/50">${labels.colSing}</th>
-                <th class="p-4 w-1/4 font-semibold border-r border-maroon-700/50">${labels.colDual}</th>
-                <th class="p-4 w-1/4 font-semibold">${labels.colPlur}</th>
-            `;
-        }
-
-        // Render Single Table View
         function renderSingleTable(item) {
             document.getElementById('tableHeaderRow').innerHTML = buildTableHeaderHTML(item.type);
             document.getElementById('shabdaTableBody').innerHTML = buildTableRowsHTML(item, 'main');
         }
 
-        // Render All Tables View (All 3 Shabdas + All Dhatus)
         function renderAllTables() {
             const container = document.getElementById('allTablesViewSection');
             const allItems = [...shabdaData, ...dhatuData];
 
             container.innerHTML = allItems.map((item, i) => `
-                <div class="bg-white rounded-2xl shadow-lg border border-amber-200 overflow-hidden">
-                    <div class="bg-gradient-to-r from-saffron-100 to-amber-50 px-5 py-3.5 border-b border-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="table-card">
+                    <div class="all-table-header">
                         <div>
-                            <h3 class="text-xl font-bold font-serifKannada text-maroon-900">${item.subTitle[currentScript]}</h3>
-                            <p class="text-xs text-saffron-800">${item.meta}</p>
+                            <h3 class="all-table-title">${item.subTitle[currentScript]}</h3>
+                            <p class="all-table-meta">${item.meta}</p>
                         </div>
-                        <button onclick="playSpecificItem('${item.id}', 'all-${i}')" class="self-start sm:self-center px-3 py-1.5 rounded-lg text-xs font-bold bg-maroon-800 hover:bg-maroon-700 text-amber-100 flex items-center gap-1.5 shadow">
-                            <i class="fa-solid fa-play text-saffron-400"></i> Play All
+                        <button class="play-all-btn" style="padding:7px 14px; font-size:0.8rem;" onclick="playSpecificItem('${item.id}', 'all-${i}')">
+                            <span>🔊</span> Play All
                         </button>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse min-w-[680px]">
+                    <div class="table-scroll">
+                        <table class="shabda-table">
                             <thead>
-                                <tr class="bg-gradient-to-r from-maroon-800 to-maroon-900 text-amber-100 text-sm border-b border-saffron-600">
-                                    ${buildTableHeaderHTML(item.type)}
-                                </tr>
+                                <tr>${buildTableHeaderHTML(item.type)}</tr>
                             </thead>
-                            <tbody class="divide-y divide-amber-100 text-slate-800 text-base">
+                            <tbody>
                                 ${buildTableRowsHTML(item, 'all-' + i)}
                             </tbody>
                         </table>
@@ -940,35 +1561,54 @@
             `).join('');
         }
 
-        // Render Flashcard View
+        // Flashcard Rendering & Flipping
         function renderFlashcard() {
             const item = getCurrentItem();
             const form = item.forms[currentFlashcardIdx];
             const labels = uiLabels[currentScript];
 
-            // Reset Flip State
-            const cardElem = document.getElementById('flashcardElement');
-            cardElem.classList.remove('flipped');
+            isFlashcardFlipped = false;
+            updateFlashcardVisualState();
 
             const itemTitle = item.type === 'dhatu' ? item.tabName[currentScript] : item.name[currentScript];
-
             document.getElementById('fcVibhakti').innerText = `${form.vibhakti[currentScript]} - (${form.karaka[currentScript]})`;
-            document.getElementById('fcTitle').innerText = `${itemTitle} - ${form.vibhakti[currentScript]}`;
-            
+            document.getElementById('fcTitle').innerText = `${itemTitle} — ${form.vibhakti[currentScript]}`;
+
             document.getElementById('fcSingLabel').innerText = labels.colSing + ':';
             document.getElementById('fcDualLabel').innerText = labels.colDual + ':';
             document.getElementById('fcPlurLabel').innerText = labels.colPlur + ':';
 
             document.getElementById('fcSingular').innerText = form.singular[currentScript];
-            document.getElementById('fcSingularM').innerText = '(' + form.singularM + ')';
+            document.getElementById('fcSingularM').innerText = `(${form.singularM})`;
 
             document.getElementById('fcDual').innerText = form.dual[currentScript];
-            document.getElementById('fcDualM').innerText = '(' + form.dualM + ')';
+            document.getElementById('fcDualM').innerText = `(${form.dualM})`;
 
             document.getElementById('fcPlural').innerText = form.plural[currentScript];
-            document.getElementById('fcPluralM').innerText = '(' + form.pluralM + ')';
+            document.getElementById('fcPluralM').innerText = `(${form.pluralM})`;
 
             document.getElementById('flashcardCounter').innerText = `${currentFlashcardIdx + 1} / ${item.forms.length}`;
+        }
+
+        function flipFlashcard() {
+            isFlashcardFlipped = !isFlashcardFlipped;
+            updateFlashcardVisualState();
+        }
+
+        function updateFlashcardVisualState() {
+            const box = document.getElementById('flashcardBox');
+            const front = document.getElementById('fcFrontView');
+            const back = document.getElementById('fcBackView');
+
+            if (isFlashcardFlipped) {
+                box.classList.add('is-flipped');
+                front.classList.add('hidden');
+                back.classList.remove('hidden');
+            } else {
+                box.classList.remove('is-flipped');
+                front.classList.remove('hidden');
+                back.classList.add('hidden');
+            }
         }
 
         function prevFlashcard() {
@@ -983,79 +1623,70 @@
             renderFlashcard();
         }
 
-        // Toggle Meaning Visibility
+        // Toggle Meanings
         function toggleMeanings() {
             showMeanings = !showMeanings;
             const labels = uiLabels[currentScript];
-            const toggleText = document.getElementById('toggleText');
-            const toggleBtn = document.getElementById('toggleMeaningBtn');
-            
-            if (showMeanings) {
-                toggleText.innerText = labels.hideMeaning;
-                toggleBtn.classList.replace('bg-amber-600', 'bg-amber-800');
-            } else {
-                toggleText.innerText = labels.showMeaning;
-                toggleBtn.classList.replace('bg-amber-800', 'bg-amber-600');
-            }
+            const btn = document.getElementById('toggleMeaningBtn');
+            document.getElementById('toggleText').innerText = showMeanings ? labels.hideMeaning : labels.showMeaning;
+            document.getElementById('toggleIcon').innerText = showMeanings ? '👁️' : '🙈';
+            btn.classList.toggle('meaning-off', !showMeanings);
             renderActiveWord();
         }
 
-        // Switch View Modes ('table', 'all', 'flashcard')
+        // Switch View Modes
         function setViewMode(mode) {
             stopPlayAll();
             viewMode = mode;
+
             const tableSec = document.getElementById('tableViewSection');
             const allSec = document.getElementById('allTablesViewSection');
-            const flashcardSec = document.getElementById('flashcardViewSection');
+            const fcSec = document.getElementById('flashcardViewSection');
             const wordHeader = document.getElementById('wordHeader');
-
-            const tableBtn = document.getElementById('viewTableBtn');
-            const allBtn = document.getElementById('viewAllTablesBtn');
-            const cardBtn = document.getElementById('viewFlashcardBtn');
-
-            const activeClass = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors bg-saffron-600 text-white shadow';
-            const inactiveClass = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors bg-maroon-700 hover:bg-maroon-600 text-amber-100 border border-saffron-500/30';
 
             tableSec.classList.add('hidden');
             allSec.classList.add('hidden');
-            flashcardSec.classList.add('hidden');
+            fcSec.classList.add('hidden');
 
-            tableBtn.className = inactiveClass;
-            allBtn.className = inactiveClass;
-            cardBtn.className = inactiveClass;
+            document.getElementById('viewTableBtn').classList.toggle('active', mode === 'table');
+            document.getElementById('viewAllTablesBtn').classList.toggle('active', mode === 'all');
+            document.getElementById('viewFlashcardBtn').classList.toggle('active', mode === 'flashcard');
 
             if (mode === 'table') {
                 tableSec.classList.remove('hidden');
                 wordHeader.classList.remove('hidden');
-                tableBtn.className = activeClass;
             } else if (mode === 'all') {
                 allSec.classList.remove('hidden');
                 wordHeader.classList.add('hidden');
-                allBtn.className = activeClass;
-            } else {
-                flashcardSec.classList.remove('hidden');
+            } else if (mode === 'flashcard') {
+                fcSec.classList.remove('hidden');
                 wordHeader.classList.remove('hidden');
-                cardBtn.className = activeClass;
             }
 
             renderTabs();
             renderActiveWord();
         }
 
-        // Search Handling
         function handleSearch() {
             searchQuery = document.getElementById('searchInput').value.trim();
             renderActiveWord();
         }
 
-        // Clear all cell audio highlights
+        function toggleGrammarGuide() {
+            isGuideOpen = !isGuideOpen;
+            const grid = document.getElementById('grammarGuideGrid');
+            const arrow = document.getElementById('guideToggleArrow');
+            grid.classList.toggle('hidden', !isGuideOpen);
+            arrow.innerText = isGuideOpen ? '▼' : '▶';
+        }
+
+        // Audio / TTS Logic
         function clearCellHighlights() {
             document.querySelectorAll('.speaking-highlight').forEach(el => {
                 el.classList.remove('speaking-highlight');
             });
         }
 
-        // Speak a single word when clicked
         function speakSingleWord(text, cellId) {
             stopPlayAll();
             clearCellHighlights();
@@ -1065,7 +1696,7 @@
             }
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text.replace(/[-]/g, ''));
+                const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'kn-IN';
                 utterance.rate = 0.85;
                 utterance.onend = () => clearCellHighlights();
@@ -1074,7 +1705,6 @@
             }
         }
 
-        // Play All Words for the currently active table
         function togglePlayAll() {
             if (isPlayingAll) {
                 stopPlayAll();
@@ -1084,7 +1714,6 @@
             startQueuePlayback(item, 'main');
         }
 
-        // Play All Words for a specific table in "All Tables" view
         function playSpecificItem(itemId, tablePrefix) {
             stopPlayAll();
             const allItems = [...shabdaData, ...dhatuData];
@@ -1094,12 +1723,10 @@
             }
         }
 
-        // Build queue and play sequentially with visual highlighting
         function startQueuePlayback(item, tablePrefix) {
             if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
 
-            // Ensure table view is visible if not in 'all' view
             if (viewMode === 'flashcard') {
                 setViewMode('table');
             }
@@ -1116,7 +1743,7 @@
 
             const labels = uiLabels[currentScript];
             document.getElementById('playAllText').innerText = labels.playing;
-            document.getElementById('playAllIcon').className = 'fa-solid fa-spinner fa-spin text-saffron-400';
+            document.getElementById('playAllIcon').innerText = '⏳';
             document.getElementById('stopAllBtn').classList.remove('hidden');
 
             playNextInQueue();
@@ -1133,7 +1760,7 @@
             const cell = document.getElementById(current.cellId);
             if (cell) {
                 cell.classList.add('speaking-highlight');
-                cell.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                cell.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
             }
 
             const utterance = new SpeechSynthesisUtterance(current.text);
@@ -1143,7 +1770,7 @@
             utterance.onend = () => {
                 if (!isPlayingAll) return;
                 playIndex++;
-                setTimeout(playNextInQueue, 250); // brief natural pause between words
+                setTimeout(playNextInQueue, 260);
             };
 
             utterance.onerror = () => {
@@ -1170,7 +1797,7 @@
             const stopAllBtn = document.getElementById('stopAllBtn');
 
             if (playAllText) playAllText.innerText = labels.playAll;
-            if (playAllIcon) playAllIcon.className = 'fa-solid fa-volume-high text-saffron-400';
+            if (playAllIcon) playAllIcon.innerText = '🔊';
             if (stopAllBtn) stopAllBtn.classList.add('hidden');
         }
     </script>
